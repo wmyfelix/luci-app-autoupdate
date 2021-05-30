@@ -31,7 +31,7 @@ x86_64)
 	BOOT_Type=""
 ;;
 esac
-Cloud_Version="$(cat /tmp/Github_Tags | egrep -o "AutoBuild-${DEFAULT_Device}-R[0-9]+.[0-9]+.[0-9]+.[0-9]+${Firmware_SFX}" | awk 'END {print}' | egrep -o 'R[0-9]+.[0-9]+.[0-9]+.[0-9]+')"
+Cloud_Version="$(cat /tmp/Github_Tags | egrep -o "${DEFAULT_Device}-R[0-9]+.[0-9]+.[0-9]+.[0-9]+-squashfs-sysupgrade${Firmware_SFX}" | awk 'END {print}' | egrep -o 'R[0-9]+.[0-9]+.[0-9]+.[0-9]+')"
 if [[ ! -z "${Cloud_Version}" ]];then
 	if [[ "${CURRENT_Version}" == "${Cloud_Version}" ]];then
 		Checked_Type="已是最新"
