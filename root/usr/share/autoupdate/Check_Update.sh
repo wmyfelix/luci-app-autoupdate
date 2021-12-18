@@ -14,8 +14,8 @@ fi
 [[ -z "${DEFAULT_Device}" ]] && DEFAULT_Device="$(jsonfilter -e '@.model.id' < "/etc/board.json" | tr ',' '_')"
 [[ -z "${Github}" ]] && exit
 Author="${Github##*com/}"
-Github_Tags="https://api.github.com/repos/${Author}/releases/latest"
-wget -q ${Github_Tags} -O - > /tmp/Github_Tags
+Github_Tags=$(/bin/AutoUpdate.sh -tag)
+curl -SsL ${Github_Tags} -o /tmp/Github_Tags
 case ${DEFAULT_Device} in
 x86_64)
 	if [ -d /sys/firmware/efi ];then
