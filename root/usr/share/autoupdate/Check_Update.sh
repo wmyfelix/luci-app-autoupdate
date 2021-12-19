@@ -12,8 +12,6 @@ fi
 	exit
 }
 [[ -z "${DEFAULT_Device}" ]] && DEFAULT_Device="$(jsonfilter -e '@.model.id' < "/etc/board.json" | tr ',' '_')"
-[[ -z "${Github}" ]] && exit
-Author="${Github##*com/}"
 Github_Tags=$(/bin/AutoUpdate.sh -tag)
 [[ -z "Github_Tags" ]]&& exit
 curl -SsL ${Github_Tags} -o /tmp/Github_Tags
